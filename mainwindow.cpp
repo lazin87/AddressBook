@@ -7,18 +7,16 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
-   // , ui(new Ui::MainWindow)
 {
-   // ui->setupUi(this);
     addressWidget = new AddressWidget;
     setCentralWidget(addressWidget);
-    createMenus();
+   // createMenus(); this method should be fully implemented before uncommencting
     setWindowTitle(tr("Address Book") );
 }
 
 MainWindow::~MainWindow()
 {
-   // delete ui;
+
 }
 
 void MainWindow::createMenus()
