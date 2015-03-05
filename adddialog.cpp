@@ -3,6 +3,7 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QGridLayout>
+#include <QPushButton>
 
 AddDialog::AddDialog(QWidget *parent)
     : QDialog(parent)

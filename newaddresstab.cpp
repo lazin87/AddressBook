@@ -2,11 +2,13 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QLineEdit>
+#include <QTextEdit>
 #include "adddialog.h"
 
 NewAddressTab::NewAddressTab(QWidget *parent)
 {
-    Q_UNUSED(parten);
+    Q_UNUSED(parent);
 
     descriptionLabel = new QLabel( tr("There are currently no contacts in your address book. "
                                       "\nClick Add to add new contacts."

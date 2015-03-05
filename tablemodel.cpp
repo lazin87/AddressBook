@@ -49,11 +49,11 @@ QVariant TableModel::data(const QModelIndex &index, int role) const
 
         if( 0 == index.column() )
         {
-            return pair.first();
+            return pair.first;
         }
         else if( 1 == index.column() )
         {
-            return pair.second();
+            return pair.second;
         }
     }
 
@@ -83,7 +83,7 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
     return QVariant();
 }
 
-bool TableModel::insertRows(int position, int rows, const QModelIndex &index)
+bool TableModel::insertRows(int position, int rows, const QModelIndex &index )
 {
     Q_UNUSED(index);
 
@@ -117,7 +117,7 @@ bool TableModel::setData(const QModelIndex &index, const QVariant &value, int ro
     if(index.isValid() && role == Qt::EditRole)
     {
         int row = index.row();
-        DataType p = listOfPairs(row);
+        DataType p = listOfPairs.value(row);
 
         if(0 == index.column() )
         {

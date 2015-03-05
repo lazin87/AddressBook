@@ -8,8 +8,11 @@ class TableModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    using DataType = QPair<QString, QString>;
-    using ListDataType = QList< DataType >;
+    typedef QPair<QString, QString> DataType;
+    typedef QList< DataType > ListDataType;
+
+   // using DataType = QPair<QString, QString>;
+   // using ListDataType = QList< DataType >;
 
     TableModel(QObject *parent = 0);
     TableModel(ListDataType pairs, QObject *parent = 0);
@@ -22,8 +25,8 @@ public:
 
     Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) Q_DECL_OVERRIDE;
-    bool insertRows(int position, int rows, const QModelIndex *index = QModel() ) const Q_DECL_OVERRIDE;
-    bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex() ) const Q_DECL_OVERRIDE;
+    bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex() ) Q_DECL_OVERRIDE;
+    bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex() ) Q_DECL_OVERRIDE;
 
     ListDataType getList();
 

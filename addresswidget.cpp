@@ -2,8 +2,12 @@
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
 #include <QFile>
+#include <QHeaderView>
+#include <QLineEdit>
+#include<QTextEdit>
 #include "adddialog.h"
 #include "tablemodel.h"
+#include "newaddresstab.h"
 
 AddressWidget::AddressWidget(QWidget *parent)
     :QTabWidget(parent)
@@ -12,7 +16,7 @@ AddressWidget::AddressWidget(QWidget *parent)
     newAddressTab = new NewAddressTab(this);
 
     connect( newAddressTab
-           , SIGNAL(sendDetails(QString, QString) )
+           , SIGNAL(sendDetalis(QString, QString) )
            , this
            , SLOT(addEntry(QString,QString) )
            );
@@ -95,7 +99,7 @@ void AddressWidget::addEntry(QString name, QString address)
     {
         QMessageBox::information( this
                                 , tr("Duplicate Name")
-                                , tr("The Name \"%1\" already exists.").arg(name);
+                                , tr("The Name \"%1\" already exists.").arg(name)
                                 );
     }
 }
@@ -111,7 +115,7 @@ void AddressWidget::editEntry()
     QString address;
     int row = -1;
 
-    foreach(QModel index, indexes)
+    foreach(QModelIndex index, indexes)
     {
         row = proxy->mapToSource(index).row();
         QModelIndex nameIndex = table->index(row, 0, QModelIndex() );
@@ -120,7 +124,7 @@ void AddressWidget::editEntry()
 
         QModelIndex addressIndex = table->index(row, 1, QModelIndex() );
         QVariant varAddr = table->data(addressIndex, Qt::DisplayRole);
-        adress = varAddr.toString();
+        address = varAddr.toString();
     }
 
     AddDialog aDialog;
@@ -153,7 +157,7 @@ void AddressWidget::removeEntry()
     foreach(QModelIndex index, indexes)
     {
         int row = proxy->mapToSource(index).row();
-        table->removeRows(row, 1, QmodelIndex() );
+        table->removeRows(row, 1, QModelIndex() );
     }
 
     if(table->rowCount(QModelIndex() ) == 0)

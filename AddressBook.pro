@@ -24,5 +24,3 @@ HEADERS  += mainwindow.h \
     tablemodel.h \
     newaddresstab.h \
     adddialog.h
-
-FORMS    += mainwindow.ui
