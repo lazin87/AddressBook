@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-//#include "ui_mainwindow.h"
 #include "addresswidget.h"
 #include <QMenu>
 #include <QFileDialog>
@@ -10,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     addressWidget = new AddressWidget;
     setCentralWidget(addressWidget);
-   // createMenus(); this method should be fully implemented before uncommencting
+    createMenus();
     setWindowTitle(tr("Address Book") );
 }
 
@@ -27,7 +26,21 @@ void MainWindow::createMenus()
     fileMenu->addAction(openAct);
     connect(openAct, SIGNAL(triggered() ), this, SLOT(openFile() ) );
 
-    // TO DO !!
+    saveAct = new QAction( tr("&Save As..."), this);
+    fileMenu->addAction(saveAct);
+    connect(saveAct, SIGNAL(triggered() ), this, SLOT(saveFile() ) );
+
+    fileMenu->addSeparator();
+
+    exitAct = new QAction( tr("E&xit"), this);
+    fileMenu->addAction(exitAct);
+    connect(exitAct, SIGNAL(triggered() ), this, SLOT(close() ) );
+
+    toolMenu = menuBar()->addMenu(tr("&Tools") );
+
+    addAct = new QAction(tr("&Add Entry..."), this);
+    toolMenu->addAction(addAct);
+    connect(addAct, SIGNAL(triggered() ), addressWidget, SLOT(addEntry() ) );
 
     editAct = new QAction( tr("&Edit Entry..."), this);
     editAct->setEnabled(false);
